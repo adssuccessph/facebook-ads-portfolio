@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Joebert Greganda | Facebook Ads Media Buyer Portfolio</title>
+
+  <style>
+    :root {
+      --bg: #f5f7fb;
+      --card: #ffffff;
+      --primary: #155dfc;
+      --primary-dark: #0f3fa8;
+      --text: #172033;
+      --muted: #657085;
+      --border: #e5e9f2;
+      --accent: #ffb703;
+      --dark: #0b1324;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .container {
+      width: min(1120px, 92%);
+      margin: auto;
+    }
+
+    header {
+      background: var(--dark);
+      color: white;
+      padding: 24px 0;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .logo {
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: 0.4px;
+    }
+
+    .logo span {
+      color: var(--accent);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 18px;
+      font-size: 14px;
+      color: #d5dbea;
+    }
+
+    .nav-links a:hover {
+      color: var(--accent);
+    }
+
+    .hero {
+      padding: 90px 0 70px;
+      background:
+        radial-gradient(circle at top right, rgba(21, 93, 252, 0.16), transparent 35%),
+        linear-gradient(135deg, #ffffff 0%, #eef4ff 100%);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 40px;
+      align-items: center;
+    }
+
+    .badge {
+      display: inline-block;
+      background: rgba(21, 93, 252, 0.1);
+      color: var(--primary);
+      font-weight: 700;
+      padding: 8px 14px;
+      border-radius: 999px;
+      font-size: 14px;
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      font-size: clamp(38px, 6vw, 64px);
+      line-height: 1.05;
+      margin-bottom: 20px;
+      color: var(--dark);
+    }
+
+    .hero p {
+      font-size: 18px;
+      color: var(--muted);
+      max-width: 680px;
+      margin-bottom: 28px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 13px 20px;
+      border-radius: 12px;
+      font-weight: 700;
+      transition: 0.2s ease;
+      border: 1px solid transparent;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background: var(--primary-dark);
+      transform: translateY(-2px);
+    }
+
+    .btn-outline {
+      border-color: var(--border);
+      background: white;
+      color: var(--dark);
+    }
+
+    .btn-outline:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+      transform: translateY(-2px);
+    }
+
+    .hero-card {
+      background: var(--card);
+      border-radius: 24px;
+      padding: 28px;
+      box-shadow: 0 20px 60px rgba(23, 32, 51, 0.12);
+      border: 1px solid var(--border);
+    }
+
+    .profile-circle {
+      width: 110px;
+      height: 110px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--primary), #6ea8ff);
+      display: grid;
+      place-items: center;
+      color: white;
+      font-size: 38px;
+      font-weight: 900;
+      margin-bottom: 18px;
+    }
+
+    .hero-card h2 {
+      color: var(--dark);
+      margin-bottom: 8px;
+    }
+
+    .hero-card .role {
+      color: var(--primary);
+      font-weight: 700;
+      margin-bottom: 18px;
+    }
+
+    .stat-list {
+      display: grid;
+      gap: 12px;
+      margin-top: 22px;
+    }
+
+    .stat {
+      padding: 14px;
+      background: #f6f9ff;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+    }
+
+    .stat strong {
+      display: block;
+      color: var(--dark);
+    }
+
+    section {
+      padding: 70px 0;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 42px;
+    }
+
+    .section-title h2 {
+      font-size: clamp(28px, 4vw, 40px);
+      color: var(--dark);
+      margin-bottom: 10px;
+    }
+
+    .section-title p {
+      color: var(--muted);
+      max-width: 720px;
+      margin: auto;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 22px;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: 26px;
+      box-shadow: 0 10px 30px rgba(23, 32, 51, 0.06);
+    }
+
+    .card h3 {
+      color: var(--dark);
+      margin-bottom: 12px;
+      font-size: 21px;
+    }
+
+    .card p {
+      color: var(--muted);
+    }
+
+    .icon {
+      width: 46px;
+      height: 46px;
+      border-radius: 14px;
+      background: rgba(21, 93, 252, 0.1);
+      color: var(--primary);
+      display: grid;
+      place-items: center;
+      font-weight: 900;
+      margin-bottom: 16px;
+    }
+
+    .list {
+      margin-top: 15px;
+      display: grid;
+      gap: 10px;
+      color: var(--muted);
+    }
+
+    .list li {
+      list-style: none;
+      padding-left: 26px;
+      position: relative;
+    }
+
+    .list li::before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      color: var(--primary);
+      font-weight: 900;
+    }
+
+    .case-study {
+      background: var(--dark);
+      color: white;
+    }
+
+    .case-study .section-title h2,
+    .case-study h3 {
+      color: white;
+    }
+
+    .case-study .section-title p,
+    .case-study p,
+    .case-study .list {
+      color: #c8d2e6;
+    }
+
+    .case-box {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 24px;
+      padding: 30px;
+    }
+
+    .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .tag {
+      background: rgba(255, 183, 3, 0.14);
+      color: #ffd166;
+      border: 1px solid rgba(255, 183, 3, 0.25);
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .skills-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+    }
+
+    .skill {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 10px 14px;
+      color: var(--dark);
+      font-weight: 700;
+      box-shadow: 0 8px 20px rgba(23, 32, 51, 0.04);
+    }
+
+    .offer {
+      background: linear-gradient(135deg, var(--primary), #0b2a67);
+      color: white;
+    }
+
+    .offer .section-title h2,
+    .offer .section-title p {
+      color: white;
+    }
+
+    .offer-card {
+      background: white;
+      color: var(--text);
+      border-radius: 26px;
+      padding: 34px;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.18);
+    }
+
+    .price {
+      font-size: 38px;
+      color: var(--primary);
+      font-weight: 900;
+      margin: 8px 0 12px;
+    }
+
+    .note {
+      font-size: 14px;
+      color: var(--muted);
+      margin-top: 14px;
+      padding: 12px;
+      background: #f8fafc;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+    }
+
+    .contact {
+      text-align: center;
+    }
+
+    .contact-box {
+      max-width: 720px;
+      margin: auto;
+      background: var(--card);
+      padding: 34px;
+      border-radius: 24px;
+      border: 1px solid var(--border);
+      box-shadow: 0 10px 30px rgba(23, 32, 51, 0.06);
+    }
+
+    .contact-links {
+      margin-top: 22px;
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    footer {
+      background: var(--dark);
+      color: #c8d2e6;
+      text-align: center;
+      padding: 26px 0;
+      font-size: 14px;
+    }
+
+    @media (max-width: 850px) {
+      .hero-grid,
+      .grid-2,
+      .grid-3 {
+        grid-template-columns: 1fr;
+      }
+
+      .nav {
+        align-items: flex-start;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .hero {
+        padding: 60px 0;
+      }
+
+      .hero-card {
+        padding: 22px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="container nav">
+      <div class="logo">Joebert <span>Ads</span></div>
+      <nav class="nav-links">
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#experience">Experience</a>
+        <a href="#case-study">Case Study</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <span class="badge">Beginner Facebook Ads Media Buyer</span>
+          <h1>Simple Facebook Ads for Local Business Inquiries</h1>
+          <p>
+            I help small and local businesses start advertising on Facebook through basic campaign setup,
+            message ads, lead campaigns, ad copy, and simple performance monitoring.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#contact">Work With Me</a>
+            <a class="btn btn-outline" href="#case-study">View Sample Project</a>
+          </div>
+        </div>
+
+        <aside class="hero-card">
+          <div class="profile-circle">JG</div>
+          <h2>Joebert Greganda</h2>
+          <p class="role">Facebook Ads Media Buyer for Local Businesses</p>
+          <p>
+            Currently building my experience while handling basic Facebook Ads for company promotions,
+            training events, and inquiry-based campaigns.
+          </p>
+
+          <div class="stat-list">
+            <div class="stat">
+              <strong>Focus</strong>
+              Messages, leads, and local inquiries
+            </div>
+            <div class="stat">
+              <strong>Experience Level</strong>
+              Beginner with hands-on internal ads experience
+            </div>
+            <div class="stat">
+              <strong>Best For</strong>
+              Small businesses starting with Facebook Ads
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="container grid-2">
+        <div class="card">
+          <div class="icon">01</div>
+          <h3>About Me</h3>
+          <p>
+            Hi, I’m Joebert, a beginner Facebook Ads Media Buyer based in the Philippines.
+            I currently have hands-on experience running basic ads for our company, including
+            event promotions, product awareness posts, and inquiry-focused campaigns.
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="icon">02</div>
+          <h3>My Current Level</h3>
+          <p>
+            I am still improving my skills and learning advanced strategies, but I can already help
+            small businesses set up simple, organized, and beginner-friendly Facebook Ads campaigns.
+            My focus is clear offers, readable captions, proper setup, and getting inquiries.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="services">
+      <div class="container">
+        <div class="section-title">
+          <h2>What I Can Help With</h2>
+          <p>Starter-level Facebook Ads support for business owners who want to begin advertising online.</p>
+        </div>
+
+        <div class="grid-3">
+          <div class="card">
+            <div class="icon">A</div>
+            <h3>Basic Ad Setup</h3>
+            <p>Setting up simple Facebook campaigns based on your goal, such as messages or lead generation.</p>
+            <ul class="list">
+              <li>Campaign objective selection</li>
+              <li>Basic audience setup</li>
+              <li>Ad placement setup</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <div class="icon">B</div>
+            <h3>Ad Copy & Creative Direction</h3>
+            <p>Creating clear captions and simple ad angles that explain your offer better.</p>
+            <ul class="list">
+              <li>Headline and caption ideas</li>
+              <li>Offer improvement suggestions</li>
+              <li>Canva creative direction</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <div class="icon">C</div>
+            <h3>Basic Monitoring</h3>
+            <p>Checking campaign results and giving simple notes about what can be improved.</p>
+            <ul class="list">
+              <li>Inquiry checking</li>
+              <li>Basic result summary</li>
+              <li>Simple recommendation notes</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="experience">
+      <div class="container">
+        <div class="section-title">
+          <h2>Hands-on Experience</h2>
+          <p>My current experience comes from internal company promotions and practice projects.</p>
+        </div>
+
+        <div class="grid-2">
+          <div class="card">
+            <h3>Company Ads Experience</h3>
+            <p>
+              I assist in running basic Facebook Ads for our company, mainly for solar-related promotions,
+              product awareness, and training/event registration campaigns.
+            </p>
+            <ul class="list">
+              <li>Creating ad captions and content ideas</li>
+              <li>Setting up basic campaigns</li>
+              <li>Choosing Messages or Leads objective</li>
+              <li>Monitoring messages and inquiries</li>
+              <li>Helping improve wording based on common questions</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <h3>Business Types I Can Start With</h3>
+            <p>
+              I can work best with simple local businesses that need clear ads and more inquiries through Facebook.
+            </p>
+            <ul class="list">
+              <li>Food businesses</li>
+              <li>Printing shops</li>
+              <li>Training and events</li>
+              <li>Local services</li>
+              <li>Online sellers</li>
+              <li>Small product-based businesses</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="case-study" class="case-study">
+      <div class="container">
+        <div class="section-title">
+          <h2>Sample Internal Project</h2>
+          <p>This is an honest sample project based on internal company ad experience, not a paid client case study.</p>
+        </div>
+
+        <div class="case-box">
+          <h3>Solar Training Facebook Ads</h3>
+          <p>
+            <strong>Project Type:</strong> Internal company promotion<br>
+            <strong>Goal:</strong> Get inquiries and registrations for a solar training event<br>
+            <strong>Platform:</strong> Facebook Ads<br>
+            <strong>Objective:</strong> Messages / Leads<br>
+            <strong>My Role:</strong> Ad copy, creative idea, basic setup, and monitoring
+          </p>
+
+          <div class="grid-2" style="margin-top: 24px;">
+            <div>
+              <h3>What I Did</h3>
+              <ul class="list">
+                <li>Created simple ad copy for the training promotion</li>
+                <li>Prepared creative direction for the post</li>
+                <li>Set up basic targeting for solar-related interests</li>
+                <li>Monitored messages from interested participants</li>
+                <li>Adjusted wording based on common questions</li>
+              </ul>
+            </div>
+
+            <div>
+              <h3>What I Learned</h3>
+              <ul class="list">
+                <li>A clear offer helps people understand the ad faster</li>
+                <li>Message campaigns are useful for local businesses</li>
+                <li>Captions should answer common questions early</li>
+                <li>The audience should match the actual customer</li>
+                <li>Simple tracking helps improve future campaigns</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="tag-row">
+            <span class="tag">Facebook Ads</span>
+            <span class="tag">Message Campaign</span>
+            <span class="tag">Lead Generation</span>
+            <span class="tag">Local Business</span>
+            <span class="tag">Beginner Portfolio</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills">
+      <div class="container">
+        <div class="section-title">
+          <h2>Skills & Tools</h2>
+          <p>Basic skills and tools I currently use for Facebook Ads and local business promotions.</p>
+        </div>
+
+        <div class="skills-wrap">
+          <span class="skill">Meta Ads Manager</span>
+          <span class="skill">Facebook Business Suite</span>
+          <span class="skill">Message Campaigns</span>
+          <span class="skill">Lead Campaigns</span>
+          <span class="skill">Basic Targeting</span>
+          <span class="skill">Ad Copywriting</span>
+          <span class="skill">Canva</span>
+          <span class="skill">Google Sheets</span>
+          <span class="skill">Google Forms</span>
+          <span class="skill">Basic Reporting</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="offer">
+      <div class="container">
+        <div class="section-title">
+          <h2>Starter Offer</h2>
+          <p>A simple package for small business owners who want to try Facebook Ads.</p>
+        </div>
+
+        <div class="offer-card">
+          <h3>Basic Facebook Ads Setup Assistance</h3>
+          <div class="price">Starter Package</div>
+          <p>
+            Good for small business owners who want to start running Facebook Ads but don’t know where to begin.
+          </p>
+          <ul class="list">
+            <li>1 basic campaign setup</li>
+            <li>Message or lead objective setup</li>
+            <li>Basic audience targeting</li>
+            <li>1–2 ad copy options</li>
+            <li>Basic creative suggestion</li>
+            <li>Simple result monitoring</li>
+            <li>Basic performance summary</li>
+          </ul>
+
+          <div class="note">
+            Note: Since I am still building my experience, this starter offer is best for simple campaigns and local businesses.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="contact">
+      <div class="container">
+        <div class="contact-box">
+          <h2>Let’s Start Your First Facebook Ad</h2>
+          <p>
+            Need help setting up a simple Facebook ad for your business?
+            Send me a message and let’s check what campaign fits your goal.
+          </p>
+
+          <div class="contact-links">
+            <a class="btn btn-primary" href="mailto:gregandajoebert@gmail.com">Email Me</a>
+            <a class="btn btn-outline" href="https://www.facebook.com/" target="_blank">Facebook Page</a>
+          </div>
+
+          <p class="note">
+            Replace the Facebook Page button link with your actual Ads Success PH page link.
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    © 2026 Joebert Greganda. Beginner Facebook Ads Media Buyer Portfolio.
+  </footer>
+</body>
+</html>
