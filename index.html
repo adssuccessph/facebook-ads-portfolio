@@ -56,6 +56,7 @@
       align-items: center;
       justify-content: space-between;
       gap: 20px;
+      flex-wrap: wrap;
     }
 
     .brand {
@@ -95,13 +96,29 @@
 
     .nav-links {
       display: flex;
-      gap: 18px;
+      align-items: center;
+      justify-content: flex-end;
+      flex-wrap: wrap;
+      gap: 14px;
       font-size: 14px;
       color: #d5dbea;
     }
 
     .nav-links a:hover {
       color: var(--accent);
+    }
+
+    .nav-links .nav-cta {
+      background: var(--primary);
+      color: white;
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-weight: 800;
+    }
+
+    .nav-links .nav-cta:hover {
+      background: var(--primary-dark);
+      color: white;
     }
 
     .hero {
@@ -578,10 +595,18 @@
 
       .nav {
         align-items: flex-start;
+        flex-direction: column;
       }
 
       .nav-links {
-        display: none;
+        display: flex;
+        justify-content: flex-start;
+        width: 100%;
+        gap: 10px;
+      }
+
+      .nav-links a {
+        font-size: 13px;
       }
 
       .hero {
@@ -606,11 +631,11 @@
       <nav class="nav-links">
         <a href="#about">About</a>
         <a href="#services">Services</a>
-        <a href="#experience">Experience</a>
         <a href="#case-study">Case Study</a>
         <a href="#sample-ads">Sample Ads</a>
-        <a href="#contact">Contact</a>
+        <a href="packages.html">Packages</a>
         <a href="client-intake-form.html" target="_blank">Client Form</a>
+        <a class="nav-cta" href="packages.html#order-form">Order Now</a>
       </nav>
     </div>
   </header>
@@ -626,9 +651,9 @@
             message ads, lead campaigns, ad copy, and simple performance monitoring.
           </p>
           <div class="hero-actions">
-            <a class="btn btn-primary" href="client-intake-form.html" target="_blank">Fill Out Client Form</a>
+            <a class="btn btn-primary" href="packages.html">View Packages & Prices</a>
+            <a class="btn btn-outline" href="client-intake-form.html" target="_blank">Fill Out Client Form</a>
             <a class="btn btn-outline" href="#case-study">View Sample Project</a>
-            <a class="btn btn-outline" href="#contact">Contact Me</a>
           </div>
         </div>
 
@@ -661,18 +686,6 @@
             </div>
           </div>
         </aside>
-      </div>
-    </section>
-
-    <section class="edit-guide">
-      <div class="container">
-        <div class="guide-box">
-          <h3>Quick Edit Guide</h3>
-          <p>
-            Sa code, hanapin mo lang yung comments na <code>PALITAN MO ITO</code>. Palitan mo yung <code>src=""</code> ng image link mo.
-            Sa sample ads, palitan mo rin yung <code>href="#"</code> kung gusto mo i-link sa actual Facebook post.
-          </p>
-        </div>
       </div>
     </section>
 
@@ -963,6 +976,11 @@
           <div class="note">
             Note: Since I am still building my experience, this starter offer is best for simple campaigns and local businesses.
           </div>
+
+          <div class="contact-links" style="justify-content:flex-start; margin-top:20px;">
+            <a class="btn btn-primary" href="packages.html">View Packages</a>
+            <a class="btn btn-outline" href="packages.html#order-form">Submit Order Form</a>
+          </div>
         </div>
       </div>
     </section>
@@ -974,10 +992,12 @@
         <div class="form-cta-box">
           <h2>Ready to Start Your Facebook Ads?</h2>
           <p>
-            Fill out the client inquiry form so I can understand your business, offer, target customers,
-            and what kind of Facebook Ads setup you need.
+            Check the available packages first, then submit the client form or order/payment form depending on what you need.
           </p>
-          <a class="btn btn-primary" href="client-intake-form.html" target="_blank">Open Client Inquiry Form</a>
+          <div class="contact-links">
+            <a class="btn btn-primary" href="packages.html">View Packages & Prices</a>
+            <a class="btn btn-outline" href="client-intake-form.html" target="_blank">Open Client Inquiry Form</a>
+          </div>
         </div>
       </div>
     </section>
@@ -992,14 +1012,12 @@
           </p>
 
           <div class="contact-links">
-            <a class="btn btn-primary" href="client-intake-form.html" target="_blank">Client Inquiry Form</a>
+            <a class="btn btn-primary" href="packages.html">View Packages</a>
+            <a class="btn btn-outline" href="packages.html#order-form">Order / Payment Form</a>
+            <a class="btn btn-outline" href="client-intake-form.html" target="_blank">Client Inquiry Form</a>
             <a class="btn btn-outline" href="mailto:ads.success.ph21@gmail.com">Email Me</a>
             <a class="btn btn-outline" href="https://www.facebook.com/AdsSuccessPH" target="_blank">Facebook Page</a>
           </div>
-
-          <p class="note">
-            Replace the Facebook Page button link with your actual Ads Success PH page link.
-          </p>
         </div>
       </div>
     </section>
