@@ -353,6 +353,271 @@
         gap: 0;
       }
     }
+  
+    /* ===== Responsive Improvements: Tablet + Mobile ===== */
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+
+    .btn {
+      white-space: normal;
+    }
+
+    @media (max-width: 1100px) {
+      .container {
+        width: min(960px, 94%);
+      }
+
+      .nav {
+        align-items: flex-start;
+        flex-wrap: wrap;
+      }
+
+      .nav-links {
+        justify-content: flex-start;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .hero-grid,
+      .grid-2 {
+        grid-template-columns: 1fr;
+      }
+
+      .grid-3,
+      .packages-grid,
+      .terms-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 768px) {
+      body {
+        overflow-x: hidden;
+      }
+
+      header {
+        position: relative;
+        padding: 16px 0;
+      }
+
+      .nav {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 14px;
+      }
+
+      .brand,
+      .brand-text,
+      .logo {
+        max-width: 100%;
+      }
+
+      .brand-logo {
+        width: 42px;
+        height: 42px;
+        flex: 0 0 auto;
+      }
+
+      .nav-links {
+        width: 100%;
+        display: flex;
+        overflow-x: auto;
+        flex-wrap: nowrap;
+        gap: 8px;
+        padding-bottom: 4px;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      .nav-links a {
+        flex: 0 0 auto;
+        font-size: 13px;
+        background: rgba(255,255,255,0.08);
+        padding: 8px 10px;
+        border-radius: 999px;
+      }
+
+      .nav-links .nav-cta {
+        padding: 8px 10px;
+      }
+
+      .hero {
+        padding: 48px 0 42px;
+      }
+
+      h1 {
+        font-size: clamp(32px, 10vw, 44px);
+      }
+
+      .hero p {
+        font-size: 16px;
+      }
+
+      section {
+        padding: 48px 0;
+      }
+
+      .hero-actions,
+      .contact-links {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .btn,
+      button {
+        width: 100%;
+        text-align: center;
+      }
+
+      .hero-card,
+      .card,
+      .case-box,
+      .offer-card,
+      .contact-box,
+      .form-cta-box,
+      .package-card,
+      .term-card,
+      .form-card {
+        border-radius: 18px;
+      }
+
+      .hero-card,
+      .card,
+      .case-box,
+      .offer-card,
+      .contact-box,
+      .form-cta-box,
+      .package-card {
+        padding: 22px;
+      }
+
+      .profile-area {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .profile-photo {
+        width: 96px;
+        height: 96px;
+      }
+
+      .grid-3,
+      .grid-2,
+      .packages-grid,
+      .terms-grid,
+      .ad-gallery {
+        grid-template-columns: 1fr;
+      }
+
+      .ad-card img {
+        aspect-ratio: 4 / 5;
+        object-fit: cover;
+      }
+
+      .price {
+        font-size: 34px;
+      }
+
+      .section-title {
+        margin-bottom: 28px;
+      }
+
+      .section-title h2 {
+        font-size: clamp(26px, 8vw, 34px);
+      }
+
+      form {
+        padding: 22px;
+      }
+
+      .form-header {
+        padding: 24px;
+      }
+
+      input,
+      select,
+      textarea {
+        font-size: 16px;
+      }
+
+      .submit-row,
+      .submit-area {
+        flex-direction: column;
+        align-items: stretch;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .container {
+        width: 92%;
+      }
+
+      .brand-text,
+      .logo {
+        font-size: 17px;
+      }
+
+      .brand-text small,
+      .logo small {
+        font-size: 10px;
+      }
+
+      .badge {
+        font-size: 12px;
+      }
+
+      .hero {
+        padding: 38px 0 34px;
+      }
+
+      h1 {
+        font-size: 31px;
+      }
+
+      .hero p,
+      .section-title p,
+      .card p,
+      .package-card p,
+      .contact-box p,
+      .form-cta-box p {
+        font-size: 15px;
+      }
+
+      .hero-card,
+      .card,
+      .case-box,
+      .offer-card,
+      .contact-box,
+      .form-cta-box,
+      .package-card {
+        padding: 18px;
+      }
+
+      .form-card {
+        padding: 0;
+      }
+
+      .form-header,
+      form {
+        padding: 20px;
+      }
+
+      .ad-content {
+        padding: 14px;
+      }
+
+      .list li,
+      .package-list li,
+      .hero-card li {
+        padding-left: 22px;
+      }
+
+      footer {
+        font-size: 13px;
+      }
+    }
+
   </style>
 </head>
 
