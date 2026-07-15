@@ -1,0 +1,57 @@
+KAWAII AQUA PETS - ORDER TRACKING UPDATE
+
+NEW FEATURES
+- Customer Track Order button in the website header.
+- Secure lookup requires Order ID + the same customer email or mobile number used at checkout.
+- Visual order timeline: Order Received > Payment Confirmed > Preparing > Ready for Shipping > Shipped / Out for Delivery > Completed.
+- Cancelled orders show a cancelled notice.
+- Admin can save an LBC tracking number or a Lalamove tracking/share link.
+- LBC orders automatically show the official LBC Track & Trace page when a tracking number is saved, even if the optional tracking URL is blank.
+- When an order is marked Shipped, the customer receives a shipping update email. The tracking number/link is included when already saved.
+- Order success screen now has Track This Order.
+- Existing Buy Now, Add to Cart notification, QR payments, payment receipt email, Lalamove/LBC checkout, reviews, and social links are preserved.
+
+UPDATE STEPS
+1. Open your Google Apps Script project.
+2. Replace the existing Code.gs with the Code.gs in this folder.
+3. Run setupStore() ONCE. This only adds missing order columns and authorizes MailApp; it does not intentionally delete existing orders/products/settings.
+4. Deploy > Manage deployments > Edit > New version > Deploy.
+5. Keep Execute as: Me and access appropriate for your public web app deployment.
+6. Copy the latest Web App URL if your deployment URL changed.
+7. In config.js, keep your CURRENT WORKING Apps Script Web App URL. Do not leave the placeholder.
+8. Replace these GitHub website files with the files in this package:
+   - index.html
+   - admin.html
+   - app.js
+   - admin.js
+   - app.css
+9. Keep/upload the assets folder and your working config.js.
+10. Hard refresh the website after GitHub Pages updates.
+
+ADMIN ORDER FLOW
+Pending > Paid > Preparing > Ready > Shipped > Completed
+
+- Paid: deducts stock and sends the payment receipt email.
+- Before Shipped: open Shipping Details > Customer Order Tracking.
+  - LBC: enter the LBC tracking number. Tracking page URL is optional.
+  - Lalamove: paste the Lalamove tracking/share link.
+- Shipped: sends the customer a shipping update email.
+- Completed: marks the order completed.
+- Cancelled: stops the order and restores stock when stock had already been deducted.
+
+CUSTOMER TRACKING
+The customer opens Track Order and enters:
+- Order ID, for example ORD_...
+- Same checkout email OR same mobile number
+
+SECURITY NOTE
+The public tracking action does not return payment proof images or full customer address. It only returns order status, items, product total, payment/delivery summary, timeline, and saved tracking information after the Order ID + email/mobile match.
+
+ADMIN AUTO REFRESH UPDATE
+- The Admin Dashboard now checks for new orders and reviews every 15 seconds while the page is visible.
+- No browser reload is needed.
+- A manual "Refresh Data" button is available in the top-right dashboard actions.
+- New order/review notifications appear as a toast and red count badge on the Orders/Reviews tabs.
+- Auto refresh updates only live Orders and Reviews sections so it will not erase unsaved text while you are editing Settings or Product forms.
+- When returning to the admin browser tab, the dashboard checks for fresh data immediately.
+- This update only changes admin.html, admin.js, and app.css. Code.gs does not need a new deployment for the auto-refresh feature if you already deployed the Order Tracking Update.
