@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ads Success PH Admin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .admin-body { min-height:100vh; }
+    .admin-shell { width:min(1400px,calc(100% - 32px)); margin:24px auto 60px; }
+    .admin-header { display:flex; justify-content:space-between; align-items:center; gap:16px; margin-bottom:24px; }
+    .admin-header h1 { font-size:36px; margin:0; }
+    .admin-header p { color:var(--muted); margin:6px 0 0; }
+    .admin-actions { display:flex; gap:10px; }
+    .admin-login { min-height:100vh; display:grid; place-items:center; padding:20px; }
+    .login-card { width:min(440px,100%); padding:34px; border:1px solid var(--line); border-radius:24px; background:var(--panel); box-shadow:var(--shadow); }
+    .login-card h1 { font-size:38px; }
+    .login-card form { display:grid; gap:16px; }
+    .metrics { display:grid; grid-template-columns:repeat(5,1fr); gap:16px; margin-bottom:22px; }
+    .metric { padding:22px; border:1px solid var(--line); border-radius:20px; background:var(--panel); }
+    .metric span { color:var(--muted); font-size:12px; text-transform:uppercase; letter-spacing:.08em; }
+    .metric strong { display:block; font-size:34px; margin-top:4px; }
+    .admin-tabs { display:flex; gap:8px; flex-wrap:wrap; margin:24px 0; }
+    .admin-tabs button { padding:11px 16px; border-radius:12px; border:1px solid var(--line); color:var(--muted); background:transparent; }
+    .admin-tabs button.active { background:var(--primary); color:white; border-color:var(--primary); }
+    .admin-panel { display:none; }
+    .admin-panel.active { display:block; }
+    .panel-card { padding:24px; border:1px solid var(--line); border-radius:22px; background:var(--panel); margin-bottom:20px; }
+    .panel-card h2 { font-size:27px; }
+    .admin-form { display:grid; gap:14px; }
+    .admin-grid { display:grid; grid-template-columns:1fr 1fr; gap:18px; }
+    .table-wrap { overflow:auto; border:1px solid var(--line); border-radius:18px; }
+    table { width:100%; border-collapse:collapse; min-width:900px; }
+    th,td { padding:14px 16px; border-bottom:1px solid var(--line); text-align:left; font-size:13px; vertical-align:top; }
+    th { color:#c9d4e5; background:#0d1a2d; position:sticky; top:0; }
+    td { color:var(--muted); }
+    td b { color:var(--text); }
+    .small-button { border:1px solid var(--line); color:var(--text); background:#16243a; padding:8px 11px; border-radius:10px; margin:2px; }
+    .small-button.danger { color:#ff98a3; }
+    .status-select { min-width:120px; padding:8px 10px; }
+    .notice { color:var(--muted); font-size:13px; }
+    .compact-grid { gap:12px; }
+    .package-admin-item { padding:16px 0; border-bottom:1px solid var(--line); }
+    .package-admin-meta { color:var(--muted); font-size:12px; margin-top:4px; }
+    .package-admin-price { color:var(--accent); font-weight:800; }
+    @media(max-width:780px) {
+      .metrics,.admin-grid { grid-template-columns:1fr; }
+      .admin-header { align-items:flex-start; flex-direction:column; }
+      .admin-header h1 { font-size:30px; }
+    }
+  </style>
+</head>
+<body class="admin-body">
+  <section id="loginView" class="admin-login">
+    <div class="login-card">
+      <div class="eyebrow">ADS SUCCESS PH</div>
+      <h1>Admin Login</h1>
+      <p class="notice">Manage demos, packages, inquiries, reviews, and website settings.</p>
+      <form id="loginForm">
+        <label>Admin Password<input id="adminPassword" type="password" required autocomplete="current-password" placeholder="Enter admin password" /></label>
+        <button class="button primary full" type="submit">Login to Admin</button>
+        <div id="loginMessage" class="form-message"></div>
+      </form>
+    </div>
+  </section>
+
+  <main id="dashboardView" class="admin-shell hidden">
+    <header class="admin-header">
+      <div>
+        <div class="eyebrow">ADS SUCCESS PH</div>
+        <h1>Website Admin</h1>
+        <p>Manage your public demos and website inquiries.</p>
+      </div>
+      <div class="admin-actions">
+        <a class="button secondary" href="index.html" target="_blank">View Website</a>
+        <button id="logoutButton" class="button secondary">Logout</button>
+      </div>
+    </header>
+
+    <section class="metrics">
+      <div class="metric"><span>Total Demos</span><strong id="demoCount">0</strong></div>
+      <div class="metric"><span>Total Inquiries</span><strong id="leadCount">0</strong></div>
+      <div class="metric"><span>New Leads</span><strong id="newLeadCount">0</strong></div>
+      <div class="metric"><span>Pending Reviews</span><strong id="pendingReviewCount">0</strong></div>
+      <div class="metric"><span>Service Packages</span><strong id="packageCount">0</strong></div>
+    </section>
+
+    <nav class="admin-tabs">
+      <button class="active" data-tab="demosPanel">Demo Websites</button>
+      <button data-tab="packagesPanel">Service Packages</button>
+      <button data-tab="leadsPanel">Inquiries</button>
+      <button data-tab="reviewsPanel">Customer Reviews</button>
+      <button data-tab="settingsPanel">Website Settings</button>
+    </nav>
+
+    <section id="demosPanel" class="admin-panel active">
+      <div class="admin-grid">
+        <div class="panel-card">
+          <h2 id="demoFormTitle">Add Demo Website</h2>
+          <form id="demoForm" class="admin-form">
+            <input type="hidden" name="id" />
+            <label>Demo Title<input name="title" required placeholder="Example: Job Hiring Website" /></label>
+            <label>Category<input name="category" required placeholder="Business System" /></label>
+            <label>Short Description<textarea name="description" rows="4" required></textarea></label>
+            <input name="imageUrl" type="hidden" />
+            <label>Demo Screenshot / Image
+              <input id="demoImage" name="demoImage" type="file" accept="image/png,image/jpeg,image/webp,image/gif" />
+            </label>
+            <div id="demoImagePreview" class="upload-preview hidden">
+              <img id="demoImagePreviewImg" alt="Selected demo screenshot preview" />
+              <span>Uploaded demo image preview</span>
+            </div>
+            <p class="notice">Upload the screenshot here. The image will be saved automatically to the Google Drive folder created by the Apps Script backend. Maximum 4 MB.</p>
+            <label>Live Demo URL<input name="demoUrl" required placeholder="https://yourdemo.github.io/..." /></label>
+            <button class="button primary full" type="submit">Save Demo</button>
+            <button id="cancelEditDemo" class="button secondary full hidden" type="button">Cancel Edit</button>
+            <div id="demoMessage" class="form-message"></div>
+          </form>
+        </div>
+
+        <div class="panel-card">
+          <h2>Demo Website List</h2>
+          <div id="adminDemoList" class="notice">Loading demos...</div>
+        </div>
+      </div>
+    </section>
+
+
+    <section id="packagesPanel" class="admin-panel">
+      <div class="admin-grid">
+        <div class="panel-card">
+          <h2 id="packageFormTitle">Add Service Package</h2>
+          <form id="packageForm" class="admin-form">
+            <input type="hidden" name="id" />
+            <label>Service Tab / Category
+              <select name="category" required>
+                <option value="">Select category</option>
+                <option>Website</option>
+                <option>Creative Images</option>
+                <option>Meta Ads</option>
+              </select>
+            </label>
+            <label>Package Name<input name="name" required maxlength="100" placeholder="Example: 3 Creative Images Package" /></label>
+            <label>Price / Price Label<input name="price" required maxlength="80" placeholder="Example: ₱800 or Starts at ₱5,000" /></label>
+            <label>Short Description<textarea name="description" rows="3" required maxlength="500"></textarea></label>
+            <label>Package Inclusions
+              <textarea name="inclusions" rows="7" required placeholder="One inclusion per line&#10;3 custom creative images&#10;Product text layout&#10;1 revision"></textarea>
+            </label>
+            <div class="admin-grid compact-grid">
+              <label>Badge / Label<input name="badge" maxlength="50" placeholder="Best Seller" /></label>
+              <label>Button Text<input name="ctaLabel" maxlength="50" placeholder="Avail This Package" /></label>
+            </div>
+            <div class="admin-grid compact-grid">
+              <label>Show Publicly
+                <select name="active" required>
+                  <option value="Yes">Yes</option>
+                  <option value="No">No</option>
+                </select>
+              </label>
+              <label>Featured Package
+                <select name="featured" required>
+                  <option value="No">No</option>
+                  <option value="Yes">Yes</option>
+                </select>
+              </label>
+            </div>
+            <label>Sort Order<input name="sortOrder" type="number" min="0" step="1" value="0" /></label>
+            <button class="button primary full" type="submit">Save Package</button>
+            <button id="cancelEditPackage" class="button secondary full hidden" type="button">Cancel Edit</button>
+            <div id="packageMessage" class="form-message"></div>
+          </form>
+        </div>
+
+        <div class="panel-card">
+          <h2>Package List</h2>
+          <p class="notice">Website, Creative Images, and Meta Ads tabs on the public site are generated from these packages.</p>
+          <div id="adminPackageList" class="notice">Loading packages...</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="leadsPanel" class="admin-panel">
+      <div class="panel-card">
+        <h2>Website Inquiries</h2>
+        <p class="notice">Change the lead status after contacting the customer.</p>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>Date</th><th>Name / Business</th><th>Contact</th><th>Service / Package</th><th>Budget</th><th>Message</th><th>Status</th></tr>
+            </thead>
+            <tbody id="leadTableBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+
+    <section id="reviewsPanel" class="admin-panel">
+      <div class="panel-card">
+        <h2>Customer Reviews</h2>
+        <p class="notice">Customer email addresses are visible only here in admin. Approve a review before it appears publicly.</p>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>Date</th><th>Customer</th><th>Email</th><th>Rating / Service</th><th>Review</th><th>Status</th><th>Actions</th></tr>
+            </thead>
+            <tbody id="reviewTableBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section id="settingsPanel" class="admin-panel">
+      <div class="panel-card">
+        <h2>Website Settings</h2>
+        <form id="settingsForm" class="admin-form">
+          <label>Brand Name<input name="brandName" placeholder="Ads Success PH" /></label>
+          <label>Logo Image URL<input name="logoUrl" type="url" placeholder="https://..." /></label>
+          <label>Hero Title<textarea name="heroTitle" rows="3"></textarea></label>
+          <label>Hero Subtitle<textarea name="heroSubtitle" rows="3"></textarea></label>
+          <label>Messenger / Contact URL<input name="messengerUrl" placeholder="https://m.me/yourpage" /></label>
+          <button class="button primary" type="submit">Save Website Settings</button>
+          <div id="settingsMessage" class="form-message"></div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <script src="admin.js"></script>
+</body>
+</html>
