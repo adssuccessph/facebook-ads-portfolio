@@ -46,6 +46,98 @@
     .package-admin-item { padding:16px 0; border-bottom:1px solid var(--line); }
     .package-admin-meta { color:var(--muted); font-size:12px; margin-top:4px; }
     .package-admin-price { color:var(--accent); font-weight:800; }
+    .package-cover-preview,.package-sample-preview-grid {
+      margin-top:8px;
+    }
+    .package-cover-preview img {
+      width:100%;
+      max-height:240px;
+      object-fit:cover;
+      border-radius:14px;
+      border:1px solid var(--line);
+    }
+    .package-sample-preview-grid {
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:10px;
+    }
+    .package-sample-preview {
+      position:relative;
+      border:1px solid var(--line);
+      border-radius:12px;
+      overflow:hidden;
+      background:#0d1a2d;
+    }
+    .package-sample-preview img {
+      width:100%;
+      aspect-ratio:4/5;
+      object-fit:cover;
+      display:block;
+    }
+    .package-sample-preview button {
+      position:absolute;
+      right:6px;
+      top:6px;
+      width:30px;
+      height:30px;
+      border:0;
+      border-radius:9px;
+      background:rgba(7,17,31,.86);
+      color:#ff98a3;
+      font-size:18px;
+    }
+    .package-admin-cover {
+      width:78px;
+      height:50px;
+      object-fit:cover;
+      border-radius:9px;
+      border:1px solid var(--line);
+      margin:8px 0;
+      display:block;
+    }
+    .meta-request-grid {
+      display:grid;
+      gap:16px;
+    }
+    .meta-request-card {
+      padding:22px;
+      border:1px solid var(--line);
+      border-radius:20px;
+      background:#0d1a2d;
+    }
+    .meta-request-head {
+      display:flex;
+      justify-content:space-between;
+      gap:18px;
+      align-items:flex-start;
+      padding-bottom:16px;
+      border-bottom:1px solid var(--line);
+    }
+    .meta-request-head h3 { margin:0 0 6px; }
+    .meta-request-head p { color:var(--muted); margin:0; font-size:13px; }
+    .meta-request-details {
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:12px;
+      margin-top:16px;
+    }
+    .meta-detail {
+      padding:13px;
+      border:1px solid var(--line);
+      border-radius:12px;
+      background:rgba(255,255,255,.02);
+    }
+    .meta-detail.wide { grid-column:1/-1; }
+    .meta-detail span {
+      display:block;
+      color:var(--muted);
+      font-size:10px;
+      letter-spacing:.06em;
+      text-transform:uppercase;
+      margin-bottom:5px;
+    }
+    .meta-detail b,.meta-detail p { color:var(--text); margin:0; white-space:pre-line; overflow-wrap:anywhere; }
+    .meta-detail a { color:#b9b0ff; text-decoration:underline; }
     @media(max-width:780px) {
       .metrics,.admin-grid { grid-template-columns:1fr; }
       .admin-header { align-items:flex-start; flex-direction:column; }
@@ -86,12 +178,15 @@
       <div class="metric"><span>New Leads</span><strong id="newLeadCount">0</strong></div>
       <div class="metric"><span>Pending Reviews</span><strong id="pendingReviewCount">0</strong></div>
       <div class="metric"><span>Service Packages</span><strong id="packageCount">0</strong></div>
+      <div class="metric"><span>Meta Ads Requests</span><strong id="metaAdsRequestCount">0</strong></div>
+      <div class="metric"><span>New Ads Requests</span><strong id="newMetaAdsCount">0</strong></div>
     </section>
 
     <nav class="admin-tabs">
       <button class="active" data-tab="demosPanel">Demo Websites</button>
       <button data-tab="packagesPanel">Service Packages</button>
-      <button data-tab="leadsPanel">Inquiries</button>
+      <button data-tab="leadsPanel">Website / Creative Inquiries</button>
+      <button data-tab="metaAdsPanel">Meta Ads Requests</button>
       <button data-tab="reviewsPanel">Customer Reviews</button>
       <button data-tab="settingsPanel">Website Settings</button>
     </nav>
@@ -146,6 +241,18 @@
             <label>Package Name<input name="name" required maxlength="100" placeholder="Example: 3 Creative Images Package" /></label>
             <label>Price / Price Label<input name="price" required maxlength="80" placeholder="Example: ₱800 or Starts at ₱5,000" /></label>
             <label>Short Description<textarea name="description" rows="3" required maxlength="500"></textarea></label>
+            <input name="coverImageUrl" type="hidden" />
+            <input name="sampleImageUrls" type="hidden" value="[]" />
+            <label>Package Cover Image
+              <input id="packageCoverImage" type="file" accept="image/png,image/jpeg,image/webp,image/gif" />
+            </label>
+            <div id="packageCoverPreview" class="package-cover-preview hidden"></div>
+            <p class="notice">Optional. This main image appears on the package card. It will be uploaded to Google Drive. Maximum 4 MB.</p>
+            <label>Sample Creative / Portfolio Images
+              <input id="packageSampleImages" type="file" accept="image/png,image/jpeg,image/webp,image/gif" multiple />
+            </label>
+            <div id="packageSamplePreviewGrid" class="package-sample-preview-grid"></div>
+            <p class="notice">Add up to 8 sample images per package. Customers can open them using the View Samples button.</p>
             <label>Package Inclusions
               <textarea name="inclusions" rows="7" required placeholder="One inclusion per line&#10;3 custom creative images&#10;Product text layout&#10;1 revision"></textarea>
             </label>
@@ -184,8 +291,8 @@
 
     <section id="leadsPanel" class="admin-panel">
       <div class="panel-card">
-        <h2>Website Inquiries</h2>
-        <p class="notice">Change the lead status after contacting the customer.</p>
+        <h2>Website & Creative Inquiries</h2>
+        <p class="notice">General website and creative requests appear here. Meta Ads requests use a separate detailed intake tab.</p>
         <div class="table-wrap">
           <table>
             <thead>
@@ -197,6 +304,16 @@
       </div>
     </section>
 
+
+    <section id="metaAdsPanel" class="admin-panel">
+      <div class="panel-card">
+        <h2>Detailed Meta Ads Requests</h2>
+        <p class="notice">These requests come from the separate Meta Ads intake form. Review the campaign goal, offer, target audience, budget, and account readiness before contacting the client.</p>
+        <div id="metaAdsRequestList" class="meta-request-grid">
+          <div class="notice">Loading Meta Ads requests...</div>
+        </div>
+      </div>
+    </section>
 
     <section id="reviewsPanel" class="admin-panel">
       <div class="panel-card">
